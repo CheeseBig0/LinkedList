@@ -16,18 +16,34 @@ Problem:  Write a program that keeps and manipulates a linked list of
 */
 public class LinkedList{
 
-  //instance varialbes go here (think about what you need to keep track of!)
+  //instance variables go here (think about what you need to keep track of!)
+  private int length = 0;
 
   //constructors go here
-
+  LinkedList() {
+    head = null;
+  }
 
   //precondition: the list has been initialized
   //postcondition: the ListNode containing the appropriate value has been added and returned
   public ListNode addAValue(String line)
   {
-    return null;
-  }
+    if(head == null) {
+      head = ListNode(line, null);
+      length++;
+      return length;
+    }
 
+    ListNode spot = head;
+    while(spot.getNext() != null) {
+
+      if(spot.compareTo(line) > 0) {
+        afterNode = ListNode(line, null);
+      }
+      spot = spot.getNext();
+    }
+  }
+  
   //precondition: the list has been initialized
   //postcondition: the ListNode containing the appropriate value has been deleted and returned.
   //if the value is not in the list returns null
