@@ -18,7 +18,7 @@ public class LinkedList{
 
   //instance variables go here (think about what you need to keep track of!)
   private int length = 0;
-
+  private ListNode head;
   //constructors go here
   LinkedList() {
     head = null;
@@ -29,19 +29,22 @@ public class LinkedList{
   public ListNode addAValue(String line)
   {
     if(head == null) {
-      head = ListNode(line, null);
+      head = new ListNode(line, null);
       length++;
-      return length;
+      return head;
     }
 
+    //go through list until added next string is alphabetically after current
     ListNode spot = head;
     while(spot.getNext() != null) {
-
-      if(spot.compareTo(line) > 0) {
-        afterNode = ListNode(line, null);
+      if(spot.getNext().getValue().compareTo(line) < 0) {
+        ListNode afterNode = new ListNode(line, null);
+        spot.setNext(afterNode);
+        return spot;
       }
       spot = spot.getNext();
     }
+    return head;
   }
   
   //precondition: the list has been initialized
