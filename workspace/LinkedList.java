@@ -31,20 +31,30 @@ public class LinkedList{
     if(head == null) {
       head = new ListNode(line, null);
       length++;
+      System.out.println("-set head-");
       return head;
     }
-
+    
     //go through list until added next string is alphabetically after current
     ListNode spot = head;
-    while(spot.getNext() != null) {
-      if(spot.getNext().getValue().compareTo(line) < 0) {
-        ListNode afterNode = new ListNode(line, null);
-        spot.setNext(afterNode);
-        return spot;
+    
+    while(spot.getValue() != null) {
+      //if the new value goes before current value
+      if(spot.getValue().compareToIgnoreCase(line) > 0) {
+        ListNode beforeNode = new ListNode(line, null);
+        
+        spot.setNext(spot);
+        spot = beforeNode;
+        length++;
+        System.out.println("goes before");
+        return(beforeNode);
       }
       spot = spot.getNext();
     }
-    return head;
+    ListNode lastNode = new ListNode(line, null);
+    spot.setNext(lastNode);
+    System.out.println("goes after");
+    return lastNode;
   }
   
   //precondition: the list has been initialized
