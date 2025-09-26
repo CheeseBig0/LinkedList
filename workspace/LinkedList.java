@@ -38,22 +38,21 @@ public class LinkedList{
     //go through list until added next string is alphabetically after current
     ListNode spot = head;
     
-    while(spot.getValue() != null) {
-      //if the new value goes before current value
-      if(spot.getValue().compareToIgnoreCase(line) > 0) {
-        ListNode beforeNode = new ListNode(line, null);
-        
-        spot.setNext(spot);
-        spot = beforeNode;
-        length++;
-        System.out.println("goes before");
-        return(beforeNode);
+    while(spot.getNext() != null) {
+      //if the new value goes after current value
+      if(spot.getValue().compareToIgnoreCase(line) < 0) {
+        spot = spot.getNext();
       }
-      spot = spot.getNext();
+      else {
+        //needs to insert without removing anything
+        
+        break;
+      }
     }
     ListNode lastNode = new ListNode(line, null);
     spot.setNext(lastNode);
-    System.out.println("goes after");
+    length++;
+
     return lastNode;
   }
   
@@ -69,13 +68,27 @@ public class LinkedList{
   //postconditions: returns a string containing all values appended together with spaces between.
   public String showValues()
   {
-    return null;
+    String listValues = "";
+    if(head == null) {
+      return "empty";
+    }
+    
+    ListNode spot = head;
+    listValues += spot.getValue() + " ";
+    while(spot.getNext() != null) {
+      spot = spot.getNext();
+      listValues += spot.getValue() + " ";
+    }
+
+    return ("List: " + listValues + " Size: " + length);
   }
 
   //precondition: the list has been initialized
   //postconditions: clears the list.
   public void clear()
   {
-  
+    head = null;
+    length = 0;
+    System.out.println("Cleared!");
   }
 }
