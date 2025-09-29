@@ -40,13 +40,17 @@ public class LinkedList{
     
     while(spot.getNext() != null) {
       //if the new value goes after current value
-      if(spot.getValue().compareToIgnoreCase(line) < 0) {
+      if(spot.getValue().compareToIgnoreCase(line) <= 0) {
         spot = spot.getNext();
       }
-      else {
-        //needs to insert without removing anything
-        
-        break;
+      else
+      {
+        //goes before, inserts
+        ListNode insertedNode = new ListNode(line, null);
+        insertedNode.setNext(spot.getNext());
+        spot.setNext(insertedNode);
+        length++;
+        return insertedNode;
       }
     }
     ListNode lastNode = new ListNode(line, null);
@@ -80,7 +84,7 @@ public class LinkedList{
       listValues += spot.getValue() + " ";
     }
 
-    return ("List: " + listValues + " Size: " + length);
+    return ("List: " + listValues + " --Size: " + length + "--");
   }
 
   //precondition: the list has been initialized
