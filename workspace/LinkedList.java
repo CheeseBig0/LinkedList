@@ -41,16 +41,23 @@ public class LinkedList{
       System.out.println("-set head-");
       return head;
     }
-    
+
+    //insert at the start of list
+    if((head.getValue().compareToIgnoreCase(line) > 0)) {
+        ListNode newHead = new ListNode(line, null);
+        newHead.setNext(head);
+        head = newHead;
+        length++;
+        return (newHead);
+    }
+
     //go through list until added next string is alphabetically after current
     ListNode spot = head;
     
     while(spot.getNext() != null) {
 
-      if(length)
-
       //if the new value goes after current value
-      if((spot.getNext().getValue().compareToIgnoreCase(line) <= 0) {
+      if(spot.getNext().getValue().compareToIgnoreCase(line) <= 0) {
         spot = spot.getNext();
       }
       else
@@ -75,6 +82,7 @@ public class LinkedList{
   //if the value is not in the list returns null
   public ListNode deleteAValue(String line)
   {
+    
     return null;
   }
 
