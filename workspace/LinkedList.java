@@ -24,6 +24,13 @@ public class LinkedList{
     head = null;
   }
 
+  //reverses entire list so head is tail and tail is head
+  public ListNode reverse(String line) {
+
+    return(null);
+  }
+
+
   //precondition: the list has been initialized
   //postcondition: the ListNode containing the appropriate value has been added and returned
   public ListNode addAValue(String line)
@@ -39,8 +46,11 @@ public class LinkedList{
     ListNode spot = head;
     
     while(spot.getNext() != null) {
+
+      if(length)
+
       //if the new value goes after current value
-      if(spot.getValue().compareToIgnoreCase(line) <= 0) {
+      if((spot.getNext().getValue().compareToIgnoreCase(line) <= 0) {
         spot = spot.getNext();
       }
       else
@@ -76,15 +86,16 @@ public class LinkedList{
     if(head == null) {
       return "empty";
     }
-    
+    int tempcount = 1;
     ListNode spot = head;
     listValues += spot.getValue() + " ";
     while(spot.getNext() != null) {
+      tempcount += 1;
       spot = spot.getNext();
       listValues += spot.getValue() + " ";
     }
 
-    return ("List: " + listValues + " --Size: " + length + "--");
+    return ("List: " + listValues + "  -Counted: " +tempcount+"- " + " --Length: " + length + "--");
   }
 
   //precondition: the list has been initialized
