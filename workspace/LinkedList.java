@@ -24,12 +24,65 @@ public class LinkedList{
     head = null;
   }
 
-  //reverses entire list so head is tail and tail is head
-  public ListNode reverse(String line) {
+  //reverses list
+  public ListNode reverse() {
+    ListNode beforeSpot = null;
+    ListNode spot = head;
+    ListNode afterSpot = head.getNext();
 
+    while(spot != null) {
+      afterSpot = spot.getNext();
+
+      spot.setNext(beforeSpot);
+      beforeSpot = spot;
+      spot = afterSpot;
+
+      head = beforeSpot;
+    }
+
+    System.out.println("reversed!");
     return(null);
   }
 
+  public ListNode nReverse(int n) {
+    ListNode spot = head;
+    int count = 1;
+    
+    while(count < n) {
+      spot = spot.getNext();
+      count++;
+    }
+
+    ListNode head2 = spot.getNext();
+    spot.setNext(null); 
+
+    //reverse code from earlier
+    ListNode beforeSpot = null;
+    ListNode current = head;
+    ListNode afterSpot = head.getNext();
+
+    while(current != null) {
+      afterSpot = current.getNext();
+      current.setNext(beforeSpot);
+      beforeSpot = current;
+      current = afterSpot;
+
+      head = beforeSpot;
+    }
+
+
+    head = beforeSpot;
+    spot = head;
+    while(spot.getNext() != null) {
+      spot = spot.getNext();
+    }
+
+    //combine 2 parts into one finally
+    spot.setNext(head2);
+
+    System.out.println("reversed only the first " + n);
+    return null;
+  }
 
   //precondition: the list has been initialized
   //postcondition: the ListNode containing the appropriate value has been added and returned
@@ -82,8 +135,30 @@ public class LinkedList{
   //if the value is not in the list returns null
   public ListNode deleteAValue(String line)
   {
-    
-    return null;
+    ListNode spot = head;
+    ListNode beforeSpot = null;
+
+    if(head != null && head.getValue().equals(line) ) {
+      ListNode oldhead = head;
+      head = head.getNext();
+      return oldhead;
+    }
+
+    while ((spot != null) && !(spot.getValue().equals(line))) {
+      beforeSpot = spot;
+      spot = spot.getNext();
+    }
+
+    //its not in the list
+    if(spot == null) {
+      System.out.println("Not in list");
+      return (null);
+    }
+
+    //the previous node will set its next node to the one after the current one, so it removes the current one
+    beforeSpot.setNext(spot.getNext());
+
+    return spot;
   }
 
   //precondition: the list has been initialized
