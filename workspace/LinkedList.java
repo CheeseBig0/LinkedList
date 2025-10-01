@@ -1,18 +1,16 @@
 /*
-Problem:  Write a program that keeps and manipulates a linked list of
-	    String data. The data will be provided by the user one item at a time.
-      The user should be able to do the following operations:
-                     -add "String"
-                                adds an item to your list (maintaining alphabetical order)
-                     -remove "String"
-                                if the item exists removes the first instance of it
-                     -show
-                                should display all items in the linked list
-                     -clear
-                               should clear the list
-	Input:  commands listed above
-	Output:  the results to the screen of each menu
-	    choice, and error messages where appropriate.
+Luca Ostuni Lima 9/30/2025
+
+This manages a linked list that can be modified by these methods:
+add: puts in a value into the list and sorts it alphabetically, returns the value sorted
+remove: deletes the first found specified value, returns the deleted value
+clear: empties out the list
+show: displays each node in the list and the length (also counted length for testing)
+
+part2 stuff
+reverse: reverses the whole list
+nReverse: will only reverse the list up until the specified number
+
 */
 public class LinkedList{
 
